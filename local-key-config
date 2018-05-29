@@ -1,0 +1,75 @@
+"local config********************************************************************************
+
+nmap q :q<ENTER>
+nmap q1 :q!<ENTER>
+nmap wq :wq!<ENTER>
+nmap wq1 :wq!<ENTER>
+nmap wqa :wqa<ENTER>
+nmap Q :q<ENTER>
+nmap Q1 :q!<ENTER>
+nmap WQ1 :wq!<ENTER>
+nmap WQ :wq<ENTER>
+"nnoremap <C-w> <C-w>w
+nnoremap <space> $
+nnoremap s %
+nnoremap ; *
+nnoremap f 0
+nnoremap e #
+noremap <leader>n :set mouse=n<ENTER>
+noremap <leader>= :set mouse=<ENTER>
+noremap ]  <C-]>
+
+" 映射全选+复制 ctrl+a
+map <C-A> ggVGY
+map! <C-A> <Esc>ggVGY
+" 选中状态下 Ctrl+c 复制
+vmap <C-c> "+y
+map <c-S>v "+p "设置ctrl+shift+v粘贴快捷键
+
+"比较文件  
+nnoremap <C-F2> :vert diffsplit 
+"列出当前目录文件  
+map <C-F3> :tabnew .<CR>  
+"打开树状文件目录  
+map <C-F4> \be  
+
+"自动补全
+":inoremap ( ()<ESC>i
+":inoremap ) <c-r>=ClosePair(')')<CR>
+":inoremap { {<CR>}<ESC>O
+":inoremap } <c-r>=ClosePair('}')<CR>
+":inoremap [ []<ESC>i
+":inoremap ] <c-r>=ClosePair(']')<CR>
+":inoremap " ""<ESC>i
+":inoremap ' ''<ESC>i
+
+"设置tags  
+set tags=tags  
+"set autochdir 
+
+"默认打开Taglist 
+let Tlist_Auto_Open=1 
+"""""""""""""""""""""""""""""" 
+" Tag list (ctags) 
+"""""""""""""""""""""""""""""""" 
+
+let Tlist_Ctags_Cmd = '/usr/bin/ctags' 
+
+let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的 
+
+let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim 
+
+let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
+
+" minibufexpl插件的一般设置
+
+let g:miniBufExplMapWindowNavVim = 1
+
+let g:miniBufExplMapWindowNavArrows = 1
+
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+
+"模式切换
+noremap <TAB> :set mouse=v<ENTER> "按tab键切换到可视模式
+noremap  a :set mouse=n<ENTER> "按a切换到普通模式

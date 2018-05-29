@@ -331,10 +331,10 @@ map <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " plugin插件列表
-so vim-plugin
+so ~/.vim-yu/vim-plugin
 
 " 在新建文件自动添加title，author等信息
-so title-of-new-file
+so ~/.vim-yu/title-of-new-file
 
 "其他本地设置
-so local-key-config
+so ~/.vim-yu/local-key-config

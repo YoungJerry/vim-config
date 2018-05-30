@@ -1,3 +1,6 @@
+#vim-config install
+
+
 #install vim8
 if [ ! -d ~/.vim8-source ]; then
     mkdir ~/.vim8-source
@@ -25,5 +28,12 @@ git submodule update --init --recursive
 #install plugin
 echo "install vim plugin"
 vim -c "PluginInstall" -c "q" -c "q"
+
+if [ -f ~/.vim/bundle/vim-colors-solarized/colors/solarized.vim ]; then
+	if [ ! -d ~/.vim/colors ]; then
+		mkdir ~/.vim/colors -p
+	fi
+	cp ~/.vim/bundle/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/
+fi
 
 echo "install over!"

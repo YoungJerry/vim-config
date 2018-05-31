@@ -178,7 +178,6 @@ set helplang=cn
 set encoding=utf8
 " 使用utf-8或gbk打开文件
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
-set   noexpandtab
 set   fileformat=unix
 set   foldenable
 "set paste

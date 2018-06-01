@@ -193,8 +193,25 @@ map <F9> :PreviousColorScheme<CR>
 imap <F9> <ESC> :PreviousColorScheme<CR>
 
 " nerdtree
+" " plugin - NERD_tree.vim 以树状方式浏览系统中的文件和目录
+" :NERDtree 或F3打开NERD_tree         :NERDtreeClose    关闭NERD_tree
+" o 打开关闭文件或者目录         t 在标签页中打开
+" T 在后台标签页中打开           ! 执行此文件
+" p 到上层目录                   P 到根目录
+" K 到第一个节点                 J 到最后一个节点
+" u 打开上层目录                 m 显示文件系统菜单（添加、删除、移动操作）
+" r 递归刷新当前目录             R 递归刷新当前根目录
+"---------------------------------------------------------------------------
 map <F3> :NERDTreeToggle<CR>
 imap <F3> <ESC> :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks=1                        " 一直显示书签
+let loaded_netrwPlugin = 0                         " 不启动netrw
+let NERDTreeCaseSensitiveSort=1                    " 让文件排列更有序
+let NERDTreeHijackNetrw = 0                        " 输入:e filename不再显示netrw,而是显示nerdtree
+let NERDTreeChDirMode = 2                          " 改变tree目录的同时不改变工程的目录
+let NERDTreeWinPos = 'right'                        " NERDTree显示位置在窗口右侧
+let NERDTreeWinSize = 25                           " NERDTREE的大小
+"let NERDTreeIgnore = [ '^\.svn$','^\.git$','\~$' ] " 忽略.svn .git的显示
 "autocmd vimenter * if !argc() | NERDTree | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 

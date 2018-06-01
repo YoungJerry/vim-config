@@ -73,3 +73,6 @@ let g:miniBufExplModSelTarget = 1
 "模式切换
 noremap <TAB> :set mouse=v<ENTER> "按tab键切换到可视模式
 noremap  a :set mouse=n<ENTER> "按a切换到普通模式
+
+"在当前窗口再打开另一个文件，并左右排列显示，vs后加文件名
+noremap vs :vs 

@@ -87,7 +87,7 @@ set iskeyword+=_,$,@,%,#,-
 " 允许backspace和光标键跨越行边界
 set whichwrap+=<,>,h,l
 "设置yy最大 行数
-set viminfo='1000,f1,<500
+set viminfo='1000,f1,<5000
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
@@ -345,6 +345,12 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 " Move to word
 map <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+if &diff
+"    colors delek
+    colors blue
+"    colors peaksea
+endif
 
 " plugin插件列表
 so ~/.vim-yu/vim-plugin

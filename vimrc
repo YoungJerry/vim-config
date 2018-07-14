@@ -105,11 +105,14 @@ filetype indent on
 " 将制表符扩展为空格
 set expandtab
 " 设置编辑时制表符占用空格数
-set tabstop=4
+set tabstop=2
+"set tabstop=4
 " 设置格式化时制表符占用空格数
-set shiftwidth=4
+set shiftwidth=2
+"set shiftwidth=4
 " 让vim把连续数量的空格视为一个制表符
-set softtabstop=4
+set softtabstop=2
+"set softtabstop=4
 " 在行和段开始处使用制表符
 set smarttab
 " 历史文件中需要记录的行数
@@ -194,7 +197,7 @@ imap <F9> <ESC> :PreviousColorScheme<CR>
 
 " nerdtree
 " " plugin - NERD_tree.vim 以树状方式浏览系统中的文件和目录
-" :NERDtree 或F3打开NERD_tree         :NERDtreeClose    关闭NERD_tree
+" :NERDtree 或F2打开NERD_tree         :NERDtreeClose    关闭NERD_tree
 " o 打开关闭文件或者目录         t 在标签页中打开
 " T 在后台标签页中打开           ! 执行此文件
 " p 到上层目录                   P 到根目录
@@ -202,8 +205,8 @@ imap <F9> <ESC> :PreviousColorScheme<CR>
 " u 打开上层目录                 m 显示文件系统菜单（添加、删除、移动操作）
 " r 递归刷新当前目录             R 递归刷新当前根目录
 "---------------------------------------------------------------------------
-map <F3> :NERDTreeToggle<CR>
-imap <F3> <ESC> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
+imap <F2> <ESC> :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1                        " 一直显示书签
 let loaded_netrwPlugin = 0                         " 不启动netrw
 let NERDTreeCaseSensitiveSort=1                    " 让文件排列更有序
@@ -259,22 +262,29 @@ let g:ycm_semantic_triggers =  {
   \ }
 let g:ycm_semantic_triggers.c = ['->', '.', ' ', '(', '[', '&',']']
 
+"切换cpp和.h文件
 " a.vim: .h -> .cpp or .cpp -> .h
-nnoremap <silent> <F2> :A<CR>
+nnoremap <silent> <F3> :A<CR>
 
 " tagbar
 let g:tagbar_ctags_bin = '/usr/bin/ctags'
 let g:tagbar_width = 30
-map <F4> :TagbarToggle<CR>
+"map <F4> :TagbarToggle<CR>
+map <F4> :Tagbar<CR>
 imap <F4> <ESC> :TagbarToggle<CR>
 "特定文件自动打开标签窗口
-autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
+"autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
 "所有文件都打开标签页
-"autocmd BufReadPost * call tagbar#autoopen()
+autocmd BufReadPost  call tagbar#autoopen()
 ""设置tagbar的窗口显示的位置,为左边
 let g:tagbar_left=1
 "在右边显示
 "let g:tagbar_right=1
+let Tlist_Show_One_File = 0 "同时显示多个文件的tag，不只显示当前文件的
+let g:tagbar_autofocus = 0 "打开tagbar时，鼠标不自动切换到tabbar中
+"开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口)
+"let g:tagbar_autopreview = 1
+let g:easytags_autorecurse = 1
 
 " colorscheme
 set background=dark

@@ -11,15 +11,15 @@ git clone https://github.com/vim/vim.git .
 ./configure --enable-multibyte --enable-python3interp=yes --enable-pythoninterp=yes   --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu/  --with-python3-config-dir=/usr/lib/python3.4/config-3.4m-x86_64-linux-gnu/
 sudo make && sudo make install
 sudo ln -s -f /usr/local/bin/vim  /usr/bin/vim 
+sudo ln -s -f /usr/local/bin/vim  /usr/bin/vi 
 
 ln -s -f ~/.vim-yu/vimrc ~/.vimrc
 
-
-#get YouCompleteMe
 if [ ! -d ~/.vim/bundle ]; then
     mkdir ~/.vim/bundle
 fi
 cd ~/.vim/bundle
+#get YouCompleteMe
 git clone https://github.com/Valloric/YouCompleteMe
 cd ~/.vim/bundle/YouCompleteMe
 git submodule update --init --recursive

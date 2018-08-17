@@ -1,0 +1,65 @@
+#add by yjy
+alias cd1='cd ..'
+alias cd2='cd ../..'
+alias cd3='cd ../../..'
+alias cd4='cd ../../../..'
+alias cd5='cd ../../../../..'
+alias cd6='cd ../../../../../..'
+alias cd7='cd ../../../../../../..'
+alias cd8='cd ../../../../../../../..'
+alias cd9='cd ../../../../../../../../..'
+alias gs='git status'
+alias gsh='git show'
+alias gl='git log'
+alias gd='git diff'
+alias gdt='git difftool'
+alias gb='git branch'
+alias gc='git checkout'
+alias ga='git add'
+alias gcm='git commit'
+alias gsl='git stash list'
+alias gss='git stash show -p'
+alias gst='git stash'
+alias gsts='git stash save '
+alias gsp='git stash pop'
+alias gbl='git blame '
+alias gg='git grep '
+alias tl='tig log '
+alias ts='tig show '
+alias qq='exit '
+
+#cd to my-project
+alias cdp='cd ~/my-project/'
+alias cdpt='cd ~/my-project/tama/'
+
+export PATH=~/bin:$PATH
+
+#ls 经常按成ks
+alias ks='ls'
+
+#设置系统文本编辑器为vim
+export EDITOR=/usr/bin/vim
+
+#给当前代码生成tag文件　供vim插件ctags和cscope使用
+git_dir="./"
+pwdDir=`pwd`
+git branch 2>/dev/null 0>&2 1>&2 
+r=$?
+if [ $r -eq 0 ]; then
+    while [ "$git_dir" != "./.git" ]; do
+        git_dir=`find -path *.git | grep git`
+        cd ..
+    done
+    cd -
+    git_dir=`pwd`
+    if [ -f .gitignore ]; then
+        #查找是否已经插入忽略文件名到.gitignore
+        if [ "`grep -c ".cscope"  .gitignore`" -eq '0' ]; then
+            #echo "not found .cscope"
+            echo -e ".gitignore \n.cscope \ntags" >> .gitignore
+        fi
+    else
+        echo -e ".gitignore \n.cscope \ncscope* \ntags" > .gitignore
+    fi
+    cd $pwdDir
+fi

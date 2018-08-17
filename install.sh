@@ -1,6 +1,9 @@
 #vim-config install
 
-
+#install ctags
+sudo apt-get install ctags
+#install cscope
+sudo apt-get install cscope
 #install vim8
 if [ ! -d ~/.vim8-source ]; then
     mkdir ~/.vim8-source
@@ -36,4 +39,10 @@ if [ -f ~/.vim/bundle/vim-colors-solarized/colors/solarized.vim ]; then
 	cp ~/.vim/bundle/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/
 fi
 
+if [ "`grep -c "bashrc-local"  ~/.bashrc`" -eq '0' ]; then
+    #echo "not found bashrc-logcal"
+    echo "if [ -f ~/.bashrc-local ]; then" >> ~/.bashrc
+    echo "\t. ~/.bashrc-local" >> ~/.bashrc
+    echo "fi" >> ~/.bashrc
+fi
 echo "install over!"

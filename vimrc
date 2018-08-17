@@ -241,10 +241,6 @@ nnoremap <leader>i :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>o :YcmCompleter GoToInclude<CR>
 nmap <F5> :YcmDiags<CR>
 
-" ctags
-set tags+=/usr/include/tags
-set tags+=~/.vim/systags
-set tags+=~/.vim/x86_64-linux-gnu-systags
 let g:ycm_collect_identifiers_from_tags_files = 1
 " let g:ycm_semantic_triggers = {} 
 let g:ycm_semantic_triggers =  {
@@ -265,6 +261,92 @@ let g:ycm_semantic_triggers.c = ['->', '.', ' ', '(', '[', '&',']']
 "切换cpp和.h文件
 " a.vim: .h -> .cpp or .cpp -> .h
 nnoremap <silent> <F3> :A<CR>
+
+" ctags
+set tags=tags;
+set tags+=/usr/include/tags
+set tags+=~/.vim/systags
+set tags+=~/.vim/x86_64-linux-gnu-systags
+set tags+=./.cscope/tags
+"自动切换当前目录为当前文件所在的目录
+set autochdir
+
+"""""""""""""""""""""""""""""
+" Cscope Config
+"""""""""""""""""""""""""""""
+map <F9>  :call GenerateCtags()<CR>
+function! GenerateCtags()
+    let dir = getcwd()
+    if filereadable("tags")
+        let tagsdeleted=delete("./"."tags")
+        if(tagsdeleted!=0)
+            echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None
+            return
+        endif
+    endif
+    if has("cscope")
+        silent! execute "cs kill -1"
+    endif
+    if filereadable("cscope.files")
+        let csfilesdeleted=delete("./"."cscope.files")
+        if(csfilesdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files" | echohl None
+            return
+        endif
+    endif
+    if filereadable("cscope.out")
+        let csoutdeleted=delete("./"."cscope.out")
+        if(csoutdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out" | echohl None
+            return
+        endif
+    endif
+    if(executable('ctags'))
+        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+    endif
+    if(executable('cscope') && has("cscope") )
+        silent! execute "!find `pwd` -name '*.h' -o -name '*.c' -o -name '*.cc' -o -name '*.java' -o -name '*.cs' > cscope.files"
+        silent! execute "!cscope -Rbq"
+        silent! execute "mkdir -p .cscope; mv cscope.files cscope.in.out cscope.out cscope.po.out .cscope"
+        execute "normal :"
+        if filereadable(".cscope/cscope.out")
+            execute "cs add .cscope/cscope.out"
+        endif
+    endif
+endfunction
+
+noremap <silent> <C-F11> :! rm ./tags<ENTER>
+"noremap <C-F11> :silent ! rm ./tags<ENTER>
+set cscopequickfix=s-,c-,d-,i-,t-,e- "quickfix支持
+"快捷键设置
+nmap css :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap csg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap csc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap cst :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap cse :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap csf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap csi :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
+nmap csd :cs find d <C-R>=expand("<cword>")<CR><CR>
+"cscope数据库文件添加
+if has("cscope")
+    "指定用来执行 cscope 的命令
+    set csprg=/usr/bin/cscope
+    "先搜索tags标签文件，再搜索cscope数据库
+    set csto=1
+    "使用|:cstag|(:cs find g)，而不是缺省的:tag
+    set cst
+    "不显示添加数据库是否成功
+    set nocsverb
+    " add any database in current directory
+    if filereadable(".cscope/cscope.out")
+        cs add .cscope/cscope.out
+    endif
+    if filereadable("cscope.out")
+        cs add cscope.out
+    endif
+    "显示添加成功与否
+    set csverb
+endif
 
 " tagbar
 let g:tagbar_ctags_bin = '/usr/bin/ctags'

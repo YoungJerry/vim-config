@@ -18,6 +18,7 @@ nnoremap e #
 noremap <leader>n :set mouse=n<ENTER>
 noremap <leader>= :set mouse=<ENTER>
 noremap ]  <C-]>
+noremap tt  <C-t>
 
 " 映射全选+复制 ctrl+a
 map <C-A> ggVGY
@@ -50,3 +51,5 @@ noremap vs :vs
 noremap hs :split 
 "按//直接注释该行，数字+//可以注释多行
 nmap // <leader>ci
+"快速从vi切换到shell窗口，在shell窗口执行exit退出后自动返回vi，其实就是vi新开了一个shell
+noremap sh :shell <ENTER>

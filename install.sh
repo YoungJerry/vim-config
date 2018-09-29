@@ -45,4 +45,9 @@ if [ "`grep -c "bashrc-local"  ~/.bashrc`" -eq '0' ]; then
     echo "\t. ~/.bashrc-local" >> ~/.bashrc
     echo "fi" >> ~/.bashrc
 fi
+
+#install tmux
+sudo apt-get install tmux
+ln -s -f ~/.vim-yu/tmux.conf ~/.tmux.conf
+
 echo "install over!"

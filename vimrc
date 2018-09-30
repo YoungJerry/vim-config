@@ -29,8 +29,9 @@ set report=0
 set mouse=a
 set selection=exclusive
 set selectmode=mouse,key
+" vi打开文件时光标跳转到上次关闭的地方，如果没有跳转，把~/.viminfo删除再试试
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
 
 

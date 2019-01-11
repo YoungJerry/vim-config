@@ -57,6 +57,9 @@ echo "install vim plugin"
 vim -c "source $MYVIMRC" -c "q"
 vim -c "PluginInstall" -c "q" -c "q"
 
+#设置终端tab忽略大小写补全
+echo "set completion-ignore-case on" >> ~/.inputrc
+
 ln -s -f $basepath/bashrc-local ~/.bashrc-local
 if [ "`grep -c "bashrc-local"  ~/.bashrc`" -eq '0' ]; then
     #echo "not found bashrc-logcal"

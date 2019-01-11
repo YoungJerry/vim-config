@@ -70,3 +70,7 @@ if [ $r -eq 0 ]; then
     fi
     cd $pwdDir
 fi
+
+#设置终端上下键快速匹配历史命令
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'

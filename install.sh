@@ -1,5 +1,8 @@
 #vim-config install
 
+#get the shell dir
+basepath=$(cd `dirname $0`; pwd)
+
 #install ctags
 sudo apt-get install -y ctags
 #install cscope
@@ -22,7 +25,7 @@ sudo make && sudo make install
 sudo ln -s -f /usr/local/bin/vim  /usr/bin/vim 
 sudo ln -s -f /usr/local/bin/vim  /usr/bin/vi 
 
-ln -s -f ~/.vim-yu/vimrc ~/.vimrc
+ln -s -f $basepath/vimrc ~/.vimrc
 
 if [ ! -d ~/.vim/colors ]; then
     mkdir ~/.vim/colors -p
@@ -54,7 +57,7 @@ echo "install vim plugin"
 vim -c "source $MYVIMRC" -c "q"
 vim -c "PluginInstall" -c "q" -c "q"
 
-ln -s -f ~/.vim-yu/bashrc-local ~/.bashrc-local
+ln -s -f $basepath/bashrc-local ~/.bashrc-local
 if [ "`grep -c "bashrc-local"  ~/.bashrc`" -eq '0' ]; then
     #echo "not found bashrc-logcal"
     echo "if [ -f ~/.bashrc-local ]; then" >> ~/.bashrc
@@ -65,6 +68,6 @@ fi
 
 #install tmux
 sudo apt-get install tmux
-ln -s -f ~/.vim-yu/tmux.conf ~/.tmux.conf
+ln -s -f $basepath/tmux.conf ~/.tmux.conf
 
 echo "install over!"
